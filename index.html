@@ -704,6 +704,120 @@ body.no-motion :is(#dash-food,#menu,#dash-plated,#dash-clue,#match-food,#match-w
 #tp-window .tp-feedback button{min-height:32px;padding:3px 6px}
 @media(max-width:650px){.tp-quiz-main{flex-wrap:wrap;gap:4px}.tp-quiz-main .tp-sample{order:2}.tp-toolbar h3{flex:1 0 calc(100% - 60px)}#tp-close{order:-1}.tp-toolbar .tp-zh{display:inline}.tp-term{font-size:clamp(1.25rem,min(6vw,5.6dvh),2.5rem)}}
 @media(max-height:460px) and (orientation:landscape){.tp-toolbar h3{display:none}.tp-toolbar select{min-height:32px}#tp-window button{min-height:34px}#tp-window .tp-card>.td-secondary{min-height:28px}#tp-intro{font-size:.72rem}.tp-sample img{height:13px}.tp-feedback{min-height:53px}}
+body:has(main>#matching:not([hidden])){display:flex;flex-direction:column;min-height:100svh}
+main:has(>#matching:not([hidden])){flex:1;display:flex;flex-direction:column;margin-block:0;padding-bottom:clamp(6px,1.2vh,14px)}
+#matching{flex:1;display:flex;flex-direction:column;min-height:0;gap:clamp(5px,1.3vh,14px)}
+#matching>.heading{margin:0}
+.match-settings{display:flex;align-items:center;gap:6px 12px;flex-wrap:wrap}
+.match-settings label{display:flex;align-items:center;gap:5px;font-weight:700}
+#match-level{font:inherit;max-width:100%;min-height:40px;border:1px solid #c58b59;border-radius:8px;padding:4px;background:#fff8e8}
+#matching .match-layout{flex:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(6px,1.15vw,18px);min-height:0}
+.match-side{display:flex;flex-direction:column;min-width:0;min-height:0;padding:clamp(4px,.7vw,10px);border:1px solid #e7bc85;border-radius:14px;background:#ffeccd80}
+.match-side h3{font-size:clamp(.9rem,2.2vw,1.55rem);margin-bottom:clamp(4px,1vh,10px)}
+#matching .match-grid{flex:1;display:grid;grid-template-columns:repeat(var(--match-cols,4),minmax(0,1fr));grid-auto-rows:minmax(clamp(72px,13svh,135px),1fr);min-height:0;margin:0;gap:clamp(4px,.65vw,11px)}
+#matching[data-level="easy"]{--match-cols:2}
+#matching[data-level="medium"]{--match-cols:3}
+#matching .match-grid button{position:relative;height:auto;min-height:0;padding:clamp(3px,.65vw,10px);font-size:clamp(.76rem,min(2vw,4.5svh),1.95rem);line-height:1.12;text-wrap:balance;border-color:#d49d64;display:grid;place-items:center;background:#fffaf0}
+#matching[data-level="clues"] .match-target{font-size:clamp(.7rem,min(1.65vw,4svh),1.53rem)}
+#matching .match-grid img{position:absolute;inset:9%;width:82%;height:82%;object-fit:contain}
+#matching .match-target:disabled{background:#e9f2d5;display:flex;flex-direction:column;justify-content:flex-end}
+#matching .match-target:disabled img{height:55%;width:66%;inset:8% 17% auto}
+#matching .match-source:disabled{background:#f6e6c4;opacity:.72}
+#matching .match-source[aria-pressed=true],#matching .match-target.drop-over{outline:3px solid #94401c;outline-offset:-3px;background:#ffe2a5}
+#matching .match-footer{display:flex;align-items:center;gap:6px 12px;flex-wrap:wrap;min-height:1.55em;font-weight:700;color:#683c22}
+#matching .match-footer p{margin:0}
+@media(max-width:920px) and (min-width:681px){#matching[data-level="clues"]{--match-cols:3}}
+@media(max-width:680px){#matching .match-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(67px,1fr)}.match-side{padding:4px}.match-settings{gap:5px}#matching .match-grid button{overflow-wrap:anywhere}#match-level{max-width:53vw}}
+@media(orientation:landscape) and (max-height:490px){#matching{gap:4px;padding:6px}#matching .heading p{display:none}#matching .match-grid{grid-auto-rows:minmax(63px,1fr)}#match-level,#matching #match-reset{min-height:36px}.match-side h3{margin-bottom:4px}}
+
+body:has(main > :is(#monster,#dash):not([hidden])){display:flex;flex-direction:column;min-height:100svh}
+main:has(> :is(#monster,#dash):not([hidden])){flex:1;display:flex;flex-direction:column;margin-block:0;padding-bottom:clamp(6px,1.2vh,14px)}
+:is(#monster,#dash){flex:1;display:flex;flex-direction:column;gap:clamp(5px,1vh,12px);min-width:0}
+:is(#monster,#dash)>.heading{margin:0}
+#monster .monster-options{margin:0}
+#dash .dash-options{padding-block:0 2px}
+:is(.monster-layout,.dash-layout){flex:1;min-width:0}
+#monster .monster-layout{grid-template-columns:minmax(0,1.12fr) minmax(0,1fr)}
+#dash .dash-layout{grid-template-columns:minmax(0,1fr) minmax(0,1.38fr)}
+#monster .monster-stage,#dash .dash-guest{
+  min-width:0;border:2px solid #9d5b2d;border-radius:20px;padding:clamp(6px,1vw,16px);
+  background:linear-gradient(150deg,#fff1cb3d,#5c2d1b55),var(--dining) center/cover no-repeat;
+  box-shadow:inset 0 1px 0 #ffe6b0,0 5px 12px #5f31174d
+}
+#monster .monster-stage{grid-template-rows:minmax(0,1fr) auto}
+#monster-guests{min-width:0}
+#monster .monster-guest{
+  border:1px solid #cb8e52;background:#fff0d3d9;padding:clamp(5px,.85vw,14px);
+  grid-template-rows:auto minmax(0,1fr) auto;align-content:stretch;align-items:center;
+  font-size:clamp(.84rem,1.75vw,1.4rem);line-height:1.15
+}
+#monster .monster-guest[aria-pressed=true]{background:#ffe6aedb;outline-offset:-2px}
+#monster .monster-guest strong,#dash-name{
+  background:#fff1ce;border:1px solid #ba783e;border-radius:10px;
+  padding:4px 7px;color:#643118;text-wrap:balance
+}
+#monster .monster-figure{width:min(100%,50svh,470px)}
+#monster-guests:has(.monster-guest:only-child) .monster-figure{width:min(94%,59svh,575px)}
+#monster .monster-guest>span:last-child{padding:4px;background:#fff3df;border-radius:8px;text-wrap:balance}
+#monster .monster-dinner,#dash .dash-table{min-width:0;display:flex;flex-direction:column}
+#monster #monster-food,#dash #dash-food{flex:1;grid-auto-rows:minmax(clamp(66px,11svh,116px),1fr)}
+#monster #monster-food button,#dash #dash-food button{
+  position:relative;display:grid;align-content:end;justify-items:center;min-width:0;
+  font-size:clamp(.75rem,1.55vw,1.36rem);line-height:1.1;padding:5px;
+  border-color:#dfad68;text-wrap:balance
+}
+#monster #monster-food img,#dash #dash-food img{
+  position:absolute;inset:5% 7% auto;width:86%;height:66%;object-fit:contain;margin:0
+}
+#dash .dash-guest{
+  align-content:center;grid-template-rows:auto minmax(0,1fr) repeat(3,auto);align-items:center;
+  gap:clamp(3px,1vh,10px)
+}
+#dash #dash-figure{width:min(97%,56svh,540px)}
+#dash .dash-layout>div:last-child{display:flex;flex-direction:column;min-width:0}
+#dash .dash-table{flex:1}
+#dash #dash-clue:not(:empty),#dash #dash-role:not([hidden]){
+  background:#fff2cef2;color:#642918;border:1px solid #ce8a48;border-radius:9px;padding:5px 8px
+}
+#dash #dash-plate{
+  min-height:clamp(82px,15svh,155px);margin:8px 0 5px;padding:clamp(6px,1vw,12px);
+  border:3px solid #9b431c;border-radius:18px;color:#562a18;
+  background:linear-gradient(145deg,#fff4bc,#ffc86a);
+  box-shadow:inset 0 0 0 4px #f5a744,inset 0 3px 0 #fff8d2,0 4px 0 #793719
+}
+#dash #dash-plate h3{font-size:clamp(1.15rem,2.5vw,1.65rem);font-weight:900}
+#dash #dash-plate-hint{font-weight:700}
+#dash #dash-plate.dash-drop{background:#d8ed9f;border-color:#476c27;box-shadow:inset 0 0 0 4px #a4cf62,0 4px 0 #365b25,0 0 18px #9dcc63}
+#dash #dash-plated{min-height:32px}
+#dash #dash-plated img{width:clamp(30px,5vw,54px);height:clamp(30px,5vw,52px)}
+@media(max-width:690px){
+  #monster .monster-layout,#dash .dash-layout{grid-template-columns:1fr}
+  #monster .monster-figure,#dash #dash-figure{width:min(100%,30svh,235px)}
+  #monster-guests:has(.monster-guest:only-child) .monster-figure{width:min(100%,35svh,300px)}
+  #monster #monster-food,#dash #dash-food{grid-auto-rows:minmax(85px,1fr)}
+}
+@media(orientation:landscape) and (max-height:540px){
+  #monster-guests:has(.monster-guest:only-child) .monster-figure,#dash #dash-figure{width:min(96%,41svh)}
+  #monster .monster-dinner,#dash .dash-table{padding:7px}
+  #dash #dash-plate{min-height:63px;padding:6px}
+}
+@media(hover:hover) and (pointer:fine){
+  :is(button[data-tab],[role="tab"],.display-buttons button,.td-filters button,.td-languages button,.tp-toolbar select,
+    #monster-picker button,#sd-scan-tools button):not(:disabled){
+    position:relative;transition:scale .18s ease,box-shadow .18s ease;transform-origin:center
+  }
+  :is(button[data-tab],[role="tab"],.display-buttons button,.td-filters button,.td-languages button,.tp-toolbar select,
+    #monster-picker button,#sd-scan-tools button):not(:disabled):hover{
+    scale:1.055;z-index:2;box-shadow:0 3px 10px #82452350
+  }
+  body.no-motion :is(button[data-tab],[role="tab"],.display-buttons button,.td-filters button,.td-languages button,.tp-toolbar select,
+    #monster-picker button,#sd-scan-tools button){scale:1;transition:none}
+}
+@media(prefers-reduced-motion:reduce){
+  :is(button[data-tab],[role="tab"],.display-buttons button,.td-filters button,.td-languages button,.tp-toolbar select,
+    #monster-picker button,#sd-scan-tools button){scale:1!important;transition:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -788,10 +902,13 @@ body.no-motion :is(#dash-food,#menu,#dash-plated,#dash-clue,#match-food,#match-w
 <button class="flash-stage" id="flash-card" aria-pressed="false"></button>
 <div class="tools"><button class="soft" id="flash-prev">Previous</button><button class="action" id="flash-next">Next</button><button class="soft" id="flash-shuffle">Shuffle</button><button class="soft" id="flash-say">🔊 Hear it</button></div>
 </section>
-<section class="panel round" id="matching" aria-labelledby="match-title" hidden>
-<div class="heading"><div><h2 id="match-title">Match the food</h2><p>Drag a picture to its word. You can also tap a picture, then tap its word.</p></div><span id="match-count" class="tag" aria-live="polite"></span></div>
-<div class="match-layout"><div><h3>Food pictures</h3><div id="match-food" class="match-grid"></div></div><div><h3>Food words</h3><div id="match-words" class="match-grid"></div></div></div>
-<div class="tools"><button class="soft" id="match-reset">New match</button><span id="match-status" role="status"></span></div>
+<section class="panel round" id="matching" aria-labelledby="match-title" data-level="classic" hidden>
+<div class="heading"><div><h2 id="match-title">Match the food</h2><p id="match-instructions">Drag a picture to its word, or tap the picture and then its word.</p></div>
+<div class="match-settings"><label>Level <select id="match-level">
+<option value="easy">1 · Easy · 4 foods</option><option value="medium">2 · Medium · 6 foods</option><option value="classic" selected>3 · Classic · 8 foods</option><option value="clues">4 · Challenge · 8 clues</option>
+</select></label><button class="soft" id="match-reset">New match</button><span id="match-count" class="tag" aria-live="polite"></span></div></div>
+<div class="match-layout"><div class="match-side"><h3>Food pictures</h3><div id="match-food" class="match-grid"></div></div><div class="match-side"><h3 id="match-target-heading">Food words</h3><div id="match-words" class="match-grid"></div></div></div>
+<div class="match-footer"><p id="match-status" role="status"></p></div>
 </section>
 <section class="panel" id="words-panel" aria-labelledby="words-title" hidden>
 <div class="word-heading"><h2 id="words-title">Word bank</h2><button class="soft" id="word-shuffle">Reshuffle</button></div>
@@ -1651,6 +1768,19 @@ $('sentence-bank').append(...practiceSentences.map(([pattern, example]) => {
 }));
 
 const matches = new Set();
+const matchLevels = {easy:4,medium:6,classic:8,clues:8};
+const matchClues = [
+  'A large bird served at Thanksgiving.',
+  'Yellow kernels on a cob.',
+  'Orange vegetables that grow underground.',
+  'Small, tart red berries.',
+  'Bread cubes mixed with herbs.',
+  'A creamy side made from crushed potatoes.',
+  'Small, soft breads with flaky layers.',
+  'A dessert with a spiced orange filling.'
+];
+let matchFoods = [];
+let matchLevel = 'classic';
 const matchSources = [];
 const matchTargets = [];
 let matchSelected = null;
@@ -1661,25 +1791,27 @@ function selectMatch(id) {
   matchSources.forEach((source, food) => source.setAttribute('aria-pressed', food === id));
 }
 function matchCount() {
-  $('match-count').textContent = matches.size + ' of 8 matched';
+  $('match-count').textContent = matches.size + ' of ' + matchFoods.length + ' matched';
 }
 function finishMatch(id) {
   if (matchSelected === null || matches.has(id)) return;
   if (id !== matchSelected) {
     effect('retry');
-    $('match-status').textContent = 'Try again. Look for the matching word.';
+    $('match-status').textContent = matchLevel === 'clues' ? 'Try again. Read the food clues.' : 'Try again. Look for the matching word.';
     return;
   }
   matches.add(id);
   effect('correct');
   matchSources[id].disabled = true;
   matchTargets[id].prepend(image(id));
+  const label = matchTargets[id].lastElementChild;
+  label.textContent = foods[id].name;
   matchTargets[id].disabled = true;
   selectMatch(null);
   matchCount();
-  $('match-status').textContent = matches.size === all.length ? 'You matched all eight foods!' : 'Correct! ' + foods[id].name + '.';
+  $('match-status').textContent = matches.size === matchFoods.length ? 'You matched all ' + matchFoods.length + ' foods!' : 'Correct! ' + foods[id].name + '.';
   say(foods[id].name);
-  const next = matchSources.find(source => !source.disabled);
+  const next = matchFoods.map(food => matchSources[food]).find(source => !source.disabled);
   (next || $('match-reset')).focus({preventScroll:true});
 }
 function matchDropTarget(event) {
@@ -1731,11 +1863,21 @@ function newMatch() {
   clearMatchDrag();
   matchSelected = null;
   matches.clear();
-  for (const id of all) {
+  matchLevel = $('match-level').value || 'classic';
+  if (!(matchLevel in matchLevels)) matchLevel = 'classic';
+  $('matching').dataset.level = matchLevel;
+  matchFoods = shuffle(all).slice(0,matchLevels[matchLevel]);
+  matchSources.length = 0;
+  matchTargets.length = 0;
+  $('match-target-heading').textContent = matchLevel === 'clues' ? 'Food clues' : 'Food words';
+  $('match-instructions').textContent = matchLevel === 'clues'
+    ? 'Read the clues. Drag or tap a food picture to match it.'
+    : 'Drag a picture to its word, or tap the picture and then its word.';
+  for (const id of matchFoods) {
     const source = button('', () => {
       if (!ignoreMatchClick) {
         selectMatch(id);
-        $('match-status').textContent = 'Now choose the matching word.';
+        $('match-status').textContent = matchLevel === 'clues' ? 'Now choose the matching clue.' : 'Now choose the matching word.';
       }
     });
     source.className = 'match-source';
@@ -1744,20 +1886,24 @@ function newMatch() {
     source.append(image(id));
     matchSources[id] = source;
     bindMatchDrag(source, id);
-    const target = button(foods[id].name, () => {
+    const target = button('', () => {
       if (matchSelected === null) $('match-status').textContent = 'Choose a picture first.';
       else finishMatch(id);
     });
+    const label = document.createElement('span');
+    label.textContent = matchLevel === 'clues' ? matchClues[id] : foods[id].name;
+    target.append(label);
     target.className = 'match-target';
     target.dataset.food = id;
     matchTargets[id] = target;
   }
-  $('match-food').replaceChildren(...shuffle(matchSources));
-  $('match-words').replaceChildren(...shuffle(matchTargets));
+  $('match-food').replaceChildren(...shuffle(matchFoods).map(id => matchSources[id]));
+  $('match-words').replaceChildren(...shuffle(matchFoods).map(id => matchTargets[id]));
   $('match-status').textContent = '';
   matchCount();
 }
 $('match-reset').onclick = newMatch;
+$('match-level').onchange = newMatch;
 newMatch();
 const draft = foods.map(food => ({...food}));
 const wordInputs = [];
